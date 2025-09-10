@@ -1,19 +1,37 @@
 package br.uniesp.si.techback.model;
 
-
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "filmes")
 public class Filme {
-    private Long id;
-    private String titulo;
-    private String genero;
-    private int anolancamento;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 100)
+    private String titulo;
+
+    @Column(columnDefinition = "TEXT")
+    private String sinopse;
+
+    @Column(name = "data_lancamento")
+    private LocalDate dataLancamento;
+
+    @Column(length = 50)
+    private String genero;
+
+    @Column(name = "duracao_minutos")
+    private Integer duracaoMinutos;
+
+    @Column(name = "classificacao_indicativa", length = 10)
+    private String classificacaoIndicativa;
 }
